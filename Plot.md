@@ -4,6 +4,8 @@ This is an outline of some of the mistakes we made / will make and sort or proje
 there are "planned" mistakes, but I am guessing we will have a lot of unplanned ones too!
 
 - Task: Import Pokemon (generation 1)
+  - _(maybe)_ we import using no UUID and then show a problem... correction or something?
+    - **Zero tag** _(if we decide to do it)_
   - Naked import of data (no namespaces, no type predicate)
     - **1st tag** _(remember tags have to pushed explicitly)_
   - Realize we need type predicate cause they will more other types of data in here -- add it
