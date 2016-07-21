@@ -28,4 +28,4 @@ there are "planned" mistakes, but I am guessing we will have a lot of unplanned 
   - Switch backend to PostgreSQL 
   - Load RDF
   - Show that you can now update data while keeping the web interface up
-  - *6th tag**
+  - **6th tag**
