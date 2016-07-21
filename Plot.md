@@ -5,6 +5,7 @@ there are "planned" mistakes, but I am guessing we will have a lot of unplanned 
 
 - Task: Import Pokemon (generation 1)
   - _(maybe)_ we import using no UUID and then show a problem... correction or something?
+    - Story could be someone messed up ID by accident in source file and we need to correct... but we used ID as primary ID and now everything references that...
     - **Zero tag** _(if we decide to do it)_
   - Naked import of data (no namespaces, no type predicate)
     - **1st tag** _(remember tags have to pushed explicitly)_
