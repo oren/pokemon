@@ -33,9 +33,11 @@ func (s *Storage) Insert(pokemon []Pokemon) {
 		s.Store.AddQuad(quad.Make(pok.Id, "height", pok.Height, "."))
 		s.Store.AddQuad(quad.Make(pok.Id, "base_experience", pok.BaseExperience, "."))
 	}
+}
 
+func (s *Storage) Read() {
 	// Now we create the path, to get to our data
-	p := cayley.StartPath(s.Store, quad.String("phrase of the day")).Out(quad.String("is of course"))
+	p := cayley.StartPath(s.Store, quad.Int(1)).Out(quad.String("name"))
 
 	// Now we get an iterator for the path (and optimize it, the second return is if it was optimized,
 	// but we don't care for now)

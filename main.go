@@ -46,8 +46,8 @@ func main() {
 		pokemon = append(pokemon, Pokemon{id, s[1], speciesId, height, baseExperiment})
 	}
 
-	// fmt.Println(pokemon)
 	storage.Insert(pokemon)
+	storage.Read()
 
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
