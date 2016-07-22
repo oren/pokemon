@@ -2,12 +2,17 @@ package main
 
 import (
 	"bufio"
-	"fmt"
 	"log"
 	"os"
 	"strconv"
 	"strings"
 )
+
+var storage *Storage
+
+func init() {
+	storage = New()
+}
 
 type Pokemon struct {
 	Id             int
@@ -41,7 +46,8 @@ func main() {
 		pokemon = append(pokemon, Pokemon{id, s[1], speciesId, height, baseExperiment})
 	}
 
-	fmt.Println(pokemon)
+	// fmt.Println(pokemon)
+	storage.Insert(pokemon)
 
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
