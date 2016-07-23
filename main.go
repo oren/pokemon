@@ -25,8 +25,8 @@ func main() {
 	csvFile := flag.String("csv", "pokemon.csv", "csv file with pokemon")
 	flag.Parse()
 
-	storage := New(*dbFile)
 	pokemon := importPokemon(*csvFile)
+	storage := New(*dbFile)
 	storage.Insert(pokemon)
 	storage.Read()
 }
