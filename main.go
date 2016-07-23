@@ -2,16 +2,14 @@ package main
 
 import (
 	"bufio"
+	"flag"
 	"log"
 	"os"
 	"strconv"
 	"strings"
 )
 
-var storage *Storage
-
 func init() {
-	storage = New()
 }
 
 type Pokemon struct {
@@ -23,7 +21,18 @@ type Pokemon struct {
 }
 
 func main() {
-	file, err := os.Open("./pokemon.csv")
+	dbFile := flag.String("db", "db", "BoltDB file")
+	csvFile := flag.String("csv", "pokemon.csv", "csv file with pokemon")
+	flag.Parse()
+
+	storage := New(*dbFile)
+	pokemon := importPokemon(*csvFile)
+	storage.Insert(pokemon)
+	storage.Read()
+}
+
+func importPokemon(csvFile string) []Pokemon {
+	file, err := os.Open(csvFile)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -43,13 +52,12 @@ func main() {
 			log.Fatal(err)
 		}
 
+		if err := scanner.Err(); err != nil {
+			log.Fatal(err)
+		}
+
 		pokemon = append(pokemon, Pokemon{id, s[1], speciesId, height, baseExperiment})
 	}
 
-	storage.Insert(pokemon)
-	storage.Read()
-
-	if err := scanner.Err(); err != nil {
-		log.Fatal(err)
-	}
+	return pokemon
 }

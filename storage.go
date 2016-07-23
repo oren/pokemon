@@ -14,9 +14,8 @@ type Storage struct {
 	Store *cayley.Handle
 }
 
-func New() *Storage {
+func New(path string) *Storage {
 	storage := &Storage{}
-	path := "./db"
 
 	// Initialize the database
 	graph.InitQuadStore("bolt", path, nil)
