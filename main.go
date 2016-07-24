@@ -2,54 +2,65 @@ package main
 
 import (
 	"bufio"
+	"flag"
 	"log"
 	"os"
 	"strconv"
 	"strings"
+
+	"github.com/cayleygraph/cayley"
+	"github.com/cayleygraph/cayley/graph"
+	_ "github.com/cayleygraph/cayley/graph/bolt"
+	"github.com/cayleygraph/cayley/quad"
 )
 
-var storage *Storage
-
-func init() {
-	storage = New()
-}
-
-type Pokemon struct {
-	Id             int
-	Name           string
-	Species_id     int
-	Height         int
-	BaseExperience int
-}
-
 func main() {
-	file, err := os.Open("./pokemon.csv")
+	dbFile := flag.String("db", "db", "BoltDB file")
+	csvFile := flag.String("csv", "pokemon.csv", "csv file with pokemon")
+	flag.Parse()
+
+	// Initialize the database
+	graph.InitQuadStore("bolt", *dbFile, nil)
+
+	// Open and use the database
+	store, err := cayley.NewGraph("bolt", *dbFile, nil)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	file, err := os.Open(*csvFile)
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer file.Close()
 
-	pokemon := []Pokemon{}
-
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		s := strings.Split(scanner.Text(), ",")
 		id, err := strconv.Atoi(s[0])
+		if err != nil {
+			log.Fatal(err)
+		}
 		speciesId, err := strconv.Atoi(s[2])
+		if err != nil {
+			log.Fatal(err)
+		}
 		height, err := strconv.Atoi(s[3])
-		baseExperiment, err := strconv.Atoi(s[4])
-
+		if err != nil {
+			log.Fatal(err)
+		}
+		baseExperience, err := strconv.Atoi(s[4])
 		if err != nil {
 			log.Fatal(err)
 		}
 
-		pokemon = append(pokemon, Pokemon{id, s[1], speciesId, height, baseExperiment})
-	}
+		if err := scanner.Err(); err != nil {
+			log.Fatal(err)
+		}
 
-	storage.Insert(pokemon)
-	storage.Read()
-
-	if err := scanner.Err(); err != nil {
-		log.Fatal(err)
+		store.AddQuad(quad.Make(id, "name", s[1], "."))
+		store.AddQuad(quad.Make(id, "species_id", speciesId, "."))
+		store.AddQuad(quad.Make(id, "height", height, "."))
+		store.AddQuad(quad.Make(id, "base_experience", baseExperience, "."))
 	}
 }
