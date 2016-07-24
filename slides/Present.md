@@ -8,17 +8,17 @@
 
 # About us
 
-##### Oren Golan 
-
-- https://oren.github.io
-- @oreng
-- orengolan@gmail.com
-
 ##### Robert Melton
 
 - https://www.robertmelton.com
 - @robertmeta
 - rmelton@gmail.com
+
+##### Oren Golan
+
+- https://oren.github.io
+- @oreng
+- orengolan@gmail.com
 
 ---
 
