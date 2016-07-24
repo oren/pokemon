@@ -1,5 +1,7 @@
 # Pokemon
 
+![](slides/cover.jpg)
+
 ## Title
 
 Evolving Graphs while Evolving Pokemon

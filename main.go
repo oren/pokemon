@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"flag"
+	"fmt"
 	"log"
 	"os"
 	"strconv"
@@ -62,5 +63,25 @@ func main() {
 		store.AddQuad(quad.Make(id, "species_id", speciesId, "."))
 		store.AddQuad(quad.Make(id, "height", height, "."))
 		store.AddQuad(quad.Make(id, "base_experience", baseExperience, "."))
+	}
+
+	// Now we create the path, to get to our data
+	// p := cayley.StartPath(store, quad.String("id")).Out(quad.String("name"))
+	p := cayley.StartPath(store)
+	p = p.Has(quad.String("name"))
+
+	it, _ := p.BuildIterator().Optimize()
+	defer it.Close()
+
+	// While we have items
+	for it.Next() {
+		token := it.Result()                // get a ref to a node
+		value := store.NameOf(token)        // get the value in the node
+		nativeValue := quad.NativeOf(value) // this converts nquad values to normal Go type
+
+		fmt.Println(nativeValue) // print it!
+	}
+	if err := it.Err(); err != nil {
+		log.Fatalln(err)
 	}
 }
