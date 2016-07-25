@@ -66,9 +66,11 @@ func main() {
 	}
 
 	// Now we create the path, to get to our data
-	// p := cayley.StartPath(store, quad.String("id")).Out(quad.String("name"))
-	p := cayley.StartPath(store)
-	p = p.Has(quad.String("name"))
+	p := cayley.StartPath(store).In(quad.String("name"))
+	// the same results
+	// p := cayley.StartPath(store).Has(quad.String("name"))
+	// show that id 134 is connected to 2 names
+	// p := cayley.StartPath(store, quad.Int(134)).Out(quad.String("name"))
 
 	it, _ := p.BuildIterator().Optimize()
 	defer it.Close()
