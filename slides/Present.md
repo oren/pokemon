@@ -1,4 +1,3 @@
-
 <!-- page_number: true -->
 
 # Evolving Graphs and Pokemon
@@ -38,9 +37,7 @@ RDF is just how the data is stored.  It is a **"Resource Description Framework"*
 
 ![](huh.gif)
 
-
 You can consider Cayley as being made up of two parts.  **Quads** (RDF Quads) representing the data, and **Queries** representing how to get data back from those quads. 
-
 
 ---
 
@@ -80,7 +77,6 @@ but...
 
 Rock Music never Listens To Bob ... because Rock Music is a bad friend. 
 
-
 ---
 
 # Gotcha #2: Duplicate quads
@@ -99,12 +95,12 @@ A query is how we get data back from the database, Cayley support multiple query
 
 ---
 
-#Gizmo?
+# Gizmo?
 ![](gizmo.jpg) Gizmo is the most common query system used with Cayley, it is a full javascript implementation.  
 ```g.V("Bob").Out("Listens To").All();```
 would return **Rock Music**.
 
-----
+---
 
 # Breathe
 Doing great!
@@ -119,7 +115,6 @@ Doing great!
 
 ---
 
-
 # Lesson 2
 
 Don't trust external ids because they could be wrong or chang later
@@ -129,7 +124,7 @@ Don't trust external ids because they could be wrong or chang later
 ```
 
 ---
-<!-- Always say who you are a the end, it is a boring start -->
+
 # Additional Reading
 
 - IRI
