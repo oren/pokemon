@@ -1,0 +1,33 @@
+hash: c7d8016f198f9a60ed50601ad50acfe9bc1849ac39a78839d475d5f69934bd3f
+updated: 2016-08-12T14:20:33.739776226-07:00
+imports:
+- name: github.com/boltdb/bolt
+  version: 04a3e85793043e76d41164037d0d7f9d53eecae3
+- name: github.com/cayleygraph/cayley
+  version: 93762b85a9b09edcf1ac1c4e235f8a7a489452e5
+  subpackages:
+  - graph
+  - graph/bolt
+  - quad
+  - graph/memstore
+  - graph/path
+  - writer
+  - clog
+  - graph/iterator
+  - graph/proto
+  - graph/memstore/b
+- name: github.com/gogo/protobuf
+  version: ff05bbbb0ff143cc11fc3f8b700fc3a2864b884d
+  subpackages:
+  - proto
+  - gogoproto
+  - protoc-gen-gogo/descriptor
+- name: github.com/pborman/uuid
+  version: ca53cad383cad2479bbba7f7a1a05797ec1386e4
+- name: github.com/satori/go.uuid
+  version: 0aa62d5ddceb50dbcb909d790b5345affd3669b6
+- name: golang.org/x/net
+  version: 07b51741c1d6423d4a6abab1c49940ec09cb1aaf
+  subpackages:
+  - context
+devImports: []

@@ -1,0 +1,8 @@
+package: github.com/oren/cayley/pokemon
+import:
+- package: github.com/cayleygraph/cayley
+  subpackages:
+  - graph
+  - graph/bolt
+  - quad
+- package: github.com/satori/go.uuid
