@@ -13,6 +13,7 @@ import (
 	"github.com/cayleygraph/cayley/graph"
 	_ "github.com/cayleygraph/cayley/graph/bolt"
 	"github.com/cayleygraph/cayley/quad"
+	"github.com/satori/go.uuid"
 )
 
 func main() {
@@ -59,10 +60,12 @@ func main() {
 			log.Fatal(err)
 		}
 
-		store.AddQuad(quad.Make(id, "name", s[1], "."))
-		store.AddQuad(quad.Make(id, "species_id", speciesId, "."))
-		store.AddQuad(quad.Make(id, "height", height, "."))
-		store.AddQuad(quad.Make(id, "base_experience", baseExperience, "."))
+		uuid := uuid.NewV1()
+		store.AddQuad(quad.Make(uuid, "id", id, "."))
+		store.AddQuad(quad.Make(uuid, "name", s[1], "."))
+		store.AddQuad(quad.Make(uuid, "species_id", speciesId, "."))
+		store.AddQuad(quad.Make(uuid, "height", height, "."))
+		store.AddQuad(quad.Make(uuid, "base_experience", baseExperience, "."))
 	}
 
 	// Now we create the path, to get to our data
@@ -73,6 +76,7 @@ func main() {
 	// p := cayley.StartPath(store, quad.Int(134)).Out(quad.String("name"))
 
 	it, _ := p.BuildIterator().Optimize()
+	it, _ = store.OptimizeIterator(it)
 	defer it.Close()
 
 	// While we have items
