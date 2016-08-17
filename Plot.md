@@ -25,10 +25,14 @@ there are "planned" mistakes, but I am guessing we will have a lot of unplanned 
   - Add in evolutions
   - Show that you can "walk" the evolutions to all the end points (8 with Eevee)
   - **5th tag**
+- Task: Add labels
+  - Add in label of source data: https://github.com/PokeAPI/pokeapi/tree/4803d224eddce9ddcdf49b402b1bcd58c873a25d/data/v2/csv
+  - Talk about how vague labels are, etc
+  - **6th tag**
 - Task: Web interface
   - Build interface, realize that if you want to update while having interface up, bolt will no longer work
   - Dump to RDF quad file
   - Switch backend to PostgreSQL 
   - Load RDF
   - Show that you can now update data while keeping the web interface up
-  - **6th tag**
+  - **7th tag**
