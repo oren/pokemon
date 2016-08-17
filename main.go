@@ -62,6 +62,7 @@ func main() {
 
 		uuid := uuid.NewV1()
 		store.AddQuad(quad.Make(uuid, "id", id, "."))
+		store.AddQuad(quad.Make(uuid, "type", "pokemon", "."))
 		store.AddQuad(quad.Make(uuid, "name", s[1], "."))
 		store.AddQuad(quad.Make(uuid, "species_id", speciesId, "."))
 		store.AddQuad(quad.Make(uuid, "height", height, "."))
