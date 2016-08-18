@@ -61,35 +61,28 @@ func main() {
 		}
 
 		uuid := uuid.NewV1()
-		store.AddQuad(quad.Make(uuid, "id", id, "."))
-		store.AddQuad(quad.Make(uuid, "type", "pokemon", "."))
-		store.AddQuad(quad.Make(uuid, "name", s[1], "."))
-		store.AddQuad(quad.Make(uuid, "species_id", speciesId, "."))
-		store.AddQuad(quad.Make(uuid, "height", height, "."))
-		store.AddQuad(quad.Make(uuid, "base_experience", baseExperience, "."))
+		store.AddQuad(quad.Make(uuid, "id", id, nil))
+		store.AddQuad(quad.Make(uuid, "type", "pokemon", nil))
+		store.AddQuad(quad.Make(uuid, "name", s[1], nil))
+		store.AddQuad(quad.Make(uuid, "species_id", speciesId, nil))
+		store.AddQuad(quad.Make(uuid, "height", height, nil))
+		store.AddQuad(quad.Make(uuid, "base_experience", baseExperience, nil))
 	}
 
 	// find uuid of pikachu
-	p1 := cayley.StartPath(store).Has("name", quad.String("pikachu"))
-	it1, _ := p1.BuildIterator().Optimize()
-	it1, _ = store.OptimizeIterator(it1)
-	defer it1.Close()
-
-	uuid := "0"
-	for it1.Next() {
-		token := it1.Result()
-		value := store.NameOf(token)
-		nativeValue := quad.NativeOf(value)
-		uuid, _ = nativeValue.(string)
-	}
-	if err := it1.Err(); err != nil {
+	p := cayley.StartPath(store).Has("name", quad.String("pikachu"))
+	vals, err := p.Iterate(nil).AllValues(nil)
+	if err != nil {
 		log.Fatalln(err)
+	} else if len(vals) == 0 {
+		log.Fatalln("not found")
 	}
+	uuid := vals[0].Native().(string)
 
 	// change pikachu to pikacho
 	t := cayley.NewTransaction()
-	t.RemoveQuad(quad.Make(uuid, "name", "pikachu", "."))
-	t.AddQuad(quad.Make(uuid, "name", "pikacho", "."))
+	t.RemoveQuad(quad.Make(uuid, "name", "pikachu", nil))
+	t.AddQuad(quad.Make(uuid, "name", "pikacho", nil))
 	err = store.ApplyTransaction(t)
 
 	if err != nil {
@@ -97,7 +90,7 @@ func main() {
 	}
 
 	// Now we create the path, to get to our data
-	p := cayley.StartPath(store).Has("type", quad.String("pokemon")).Out(quad.String("name"))
+	p = cayley.StartPath(store).Has("type", quad.String("pokemon")).Out(quad.String("name"))
 
 	it, _ := p.BuildIterator().Optimize()
 	it, _ = store.OptimizeIterator(it)
