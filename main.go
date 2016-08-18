@@ -17,8 +17,8 @@ import (
 )
 
 func main() {
-	dbFile := flag.String("db", "db", "BoltDB file")
-	csvFile := flag.String("csv", "pokemon.csv", "csv file with pokemon")
+	dbFile := flag.String("db", "data/pokemon.boltdb", "BoltDB file")
+	csvFile := flag.String("csv", "data/pokemon.csv", "csv file with pokemon")
 	flag.Parse()
 
 	// Initialize the database
@@ -70,7 +70,7 @@ func main() {
 	}
 
 	// Now we create the path, to get to our data
-	p := cayley.StartPath(store).In(quad.String("name"))
+	p := cayley.StartPath(store).Has("type", quad.String("pokemon")).Out(quad.String("name"))
 	// the same results
 	// p := cayley.StartPath(store).Has(quad.String("name"))
 	// show that id 134 is connected to 2 names
