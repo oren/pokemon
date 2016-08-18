@@ -1,4 +1,4 @@
-package: github.com/oren/cayley/pokemon
+package: github.com/oren/pokemon
 import:
 - package: github.com/cayleygraph/cayley
   subpackages:
