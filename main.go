@@ -69,12 +69,35 @@ func main() {
 		store.AddQuad(quad.Make(uuid, "base_experience", baseExperience, "."))
 	}
 
+	// find uuid of pikachu
+	p1 := cayley.StartPath(store).Has("name", quad.String("pikachu"))
+	it1, _ := p1.BuildIterator().Optimize()
+	it1, _ = store.OptimizeIterator(it1)
+	defer it1.Close()
+
+	uuid := "0"
+	for it1.Next() {
+		token := it1.Result()
+		value := store.NameOf(token)
+		nativeValue := quad.NativeOf(value)
+		uuid, _ = nativeValue.(string)
+	}
+	if err := it1.Err(); err != nil {
+		log.Fatalln(err)
+	}
+
+	// change pikachu to pikacho
+	t := cayley.NewTransaction()
+	t.RemoveQuad(quad.Make(uuid, "name", "pikachu", "."))
+	t.AddQuad(quad.Make(uuid, "name", "pikacho", "."))
+	err = store.ApplyTransaction(t)
+
+	if err != nil {
+		log.Fatalln(err)
+	}
+
 	// Now we create the path, to get to our data
 	p := cayley.StartPath(store).Has("type", quad.String("pokemon")).Out(quad.String("name"))
-	// the same results
-	// p := cayley.StartPath(store).Has(quad.String("name"))
-	// show that id 134 is connected to 2 names
-	// p := cayley.StartPath(store, quad.Int(134)).Out(quad.String("name"))
 
 	it, _ := p.BuildIterator().Optimize()
 	it, _ = store.OptimizeIterator(it)
