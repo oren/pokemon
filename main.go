@@ -69,20 +69,20 @@ func main() {
 		store.AddQuad(quad.Make(uuid, "base_experience", baseExperience, nil))
 	}
 
-	// find uuid of pikachu
-	p := cayley.StartPath(store).Has("name", quad.String("pikachu"))
+	// find uuid of pikacho
+	p := cayley.StartPath(store).Has("name", quad.String("pikacho"))
 	vals, err := p.Iterate(nil).AllValues(nil)
 	if err != nil {
 		log.Fatalln(err)
 	} else if len(vals) == 0 {
-		log.Fatalln("not found")
+		log.Fatalln("pikacho not found")
 	}
 	uuid := vals[0].Native().(string)
 
-	// change pikachu to pikacho
+	// change pikacho to pikachu
 	t := cayley.NewTransaction()
-	t.RemoveQuad(quad.Make(uuid, "name", "pikachu", nil))
-	t.AddQuad(quad.Make(uuid, "name", "pikacho", nil))
+	t.RemoveQuad(quad.Make(uuid, "name", "pikacho", nil))
+	t.AddQuad(quad.Make(uuid, "name", "pikachu", nil))
 	err = store.ApplyTransaction(t)
 
 	if err != nil {
