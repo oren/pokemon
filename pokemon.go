@@ -90,9 +90,81 @@ func UpdatePikachu(store *cayley.Handle) {
 	}
 }
 
+func LoadEvolutions(store *cayley.Handle, csvFile *string) {
+	file, err := os.Open(*csvFile)
+	if err != nil {
+		log.Fatal("Error while opening evolutions csv file", err)
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		s := strings.Split(scanner.Text(), ",")
+		targetPokemon, err := strconv.Atoi(s[0])
+		if err != nil {
+			log.Fatal("Error converting string to int", err)
+		}
+
+		if s[3] == "" {
+			continue
+		}
+
+		sourcePokemon, err := strconv.Atoi(s[3])
+		if err != nil {
+			log.Fatal("Error converting string to int", err)
+		}
+
+		if err := scanner.Err(); err != nil {
+			log.Fatal("Error while scanning", err)
+		}
+
+		// find uuid of source and target
+		p := cayley.StartPath(store).Has("id", quad.Int(sourcePokemon))
+		vals, err := p.Iterate(nil).AllValues(nil)
+		if err != nil {
+			log.Fatalln(err)
+		} else if len(vals) == 0 {
+			log.Fatalln("source pokemon not found")
+		}
+		sourcePokemonUUID := vals[0].Native().(string)
+
+		p = cayley.StartPath(store).Has("id", quad.Int(targetPokemon))
+		vals, err = p.Iterate(nil).AllValues(nil)
+		if err != nil {
+			log.Fatalln(err)
+		} else if len(vals) == 0 {
+			log.Fatalln("target pokemon not found")
+		}
+		targetPokemonUUID := vals[0].Native().(string)
+
+		store.AddQuad(quad.Make(sourcePokemonUUID, "evolves_to", targetPokemonUUID, nil))
+	}
+}
+
 func Print(store *cayley.Handle) {
 	// Now we create the path, to get to our data
 	p := cayley.StartPath(store).Has("type", quad.String("pokemon")).Out(quad.String("name"))
+
+	it, _ := p.BuildIterator().Optimize()
+	it, _ = store.OptimizeIterator(it)
+	defer it.Close()
+
+	// While we have items
+	for it.Next() {
+		token := it.Result()                // get a ref to a node
+		value := store.NameOf(token)        // get the value in the node
+		nativeValue := quad.NativeOf(value) // this converts nquad values to normal Go type
+
+		fmt.Println(nativeValue) // print it!
+	}
+	if err := it.Err(); err != nil {
+		log.Fatalln(err)
+	}
+}
+
+func PrintEvolutions(store *cayley.Handle) {
+	// Now we create the path, to get to our data
+	p := cayley.StartPath(store).Out(quad.String("evolves_to")).Out(quad.String("evolves_to")).Out(quad.String("name"))
 
 	it, _ := p.BuildIterator().Optimize()
 	it, _ = store.OptimizeIterator(it)
