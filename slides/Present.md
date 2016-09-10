@@ -6,36 +6,77 @@
 
 ---
 
-# What are pokemon?
+# About us
 
-## Pocket Monsters!
+##### Robert Melton
 
-![](pikachu1.png)
-```Note: This is Pikachu, he is adorable.```
+- https://www.robertmelton.com
+- @robertmeta
+- rmelton@gmail.com
+
+##### Oren Golan
+
+- https://oren.github.io
+- @oreng
+- orengolan@gmail.com
 
 ---
 
 # What is a graph?
 ![](graph.png)
-This is a graph. 
-```Note: an oversimplified one```
+
+A set of vertices and edges (or node and relationships)
 
 ---
 
 # What is a graph *database*?
 ![](graph2.png)
 It is a structured way of storing and accessing a graph.
-```Tip: this picture won't be referenced again, so enjoy it```
+
+---
+
+# Why graph database?
+* Relationship
+* Whiteboard friendly
+* Performance
+* Flexibility
+---
+
+![](flexibility1.jpg)
+
+---
+
+![](flexibility2.jpg)
+
+---
+
+![](flexibility3.jpg)
+
+---
+
+![](flexibility4.jpg)
+
+---
+
+![](flexibility5.jpg)
+
+---
+
+![](flexibility6.jpg)
+
+---
+
+
+![](graph-dbs.png)
 
 ---
 
 # What is an *RDF* graph database?
 RDF is just how the data is stored.  It is a **"Resource Description Framework"**.
+
 ![](hello_my_name_is-RDF.jpg)
 
 ---
-
-![](huh.gif)
 
 You can consider Cayley as being made up of two parts.  **Quads** (RDF Quads) representing the data, and **Queries** representing how to get data back from those quads. 
 
@@ -54,18 +95,19 @@ A quad is a very simple data description.
 
 ---
 
-# (Oversimplified) Example
+# Example
 
 ![](graph.png)
 
-Bob | Listens To | Rock Music | . 
-Bob | Drives | BMW | . 
-Julie | Listens To | Rock Music | . 
-...
+3 quads:
 
-```
-Reminder: Quad | Subject | Predicate | Object
-```
+    Bob     "Listens To"   "Rock Music"   . 
+    Bob      Drives         BMW           . 
+    Julie   "Listens To"   "Rock Music"   . 
+    
+Quad format:
+
+    Subject  Predicate      Object
 
 ---
 
@@ -87,63 +129,62 @@ Duplicate quads make no sense, as they are already completely stored.  You can e
 
 ---
 
-# Queries?
+# Queries
 
-![](query.jpg)
-```Tip: this is not the time to ask questions```
 A query is how we get data back from the database, Cayley support multiple query systems, but in this talk we will focus on Gizmo.
 
 ---
 
 # Gizmo?
-![](gizmo.jpg) Gizmo is the most common query system used with Cayley, it is a full javascript implementation.  
+![](gizmo.jpg) 
+
+Gizmo is the most common query system used with Cayley, it is a full javascript implementation.  
 ```g.V("Bob").Out("Listens To").All();```
 would return **Rock Music**.
 
 ---
 
 # Breathe
-Doing great!
-![](deep-breath.jpg)
-```Hopefully at this point, we know enough to be dangerous!```
+
+You are doing great!
+At this point, we know enough to be dangerous!
 
 ---
 
 # Back to Pokemon
 
-![](eevee.jpg) Since all the cool kids know about Pokemon, we wanted to be in the loop.. but since we are geeks, we decide to do it make a graph of pokemon.
+---
+## What are we going to do?
+
+1. Import Pokemon from CSV into Cayley
+2. Query and display all Pokemon
+3. Add uniqueness
+4. Update a quad
+5. Show evolution of Pokemon
+6. Make our graph an RDF
 
 ---
 
-# Lesson 2
+1. Import Pokemon from CSV into Cayley
 
-Don't trust external ids because they could be wrong or chang later
-```
-134, eevee, 133, 4
-134, vaporeon, 134, 4
-```
+![](csv.png)
+
+https://github.com/PokeAPI/pokeapi/tree/master/data/v2/csv
+
+---
+
+## Let's try the following:
+
+1. Replace the Storage Engine
+2. Run Cayley as an application
+3. Use Cayley's Web interface, Repl, and HTTP API
 
 ---
 
 # Additional Reading
 
-- IRI
-- Schema
-- RDF
+- cayley.io
 
 ---
 
-<!-- Always say who you are a the end, it is a boring start -->
-# About us
-
-##### Robert Melton
-
-- https://www.robertmelton.com
-- @robertmeta
-- rmelton@gmail.com
-
-##### Oren Golan
-
-- https://oren.github.io
-- @oreng
-- orengolan@gmail.com
+# Thank you!
