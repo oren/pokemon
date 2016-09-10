@@ -61,18 +61,18 @@ func LoadPokemons(store *cayley.Handle, csvFile *string) {
 		// IRI format: <https://my-domain.com/9f1dae45-6d98-11e6-871e-843a4b0f5a10>
 		uuid := quad.IRI("https://my-domain.com/" + uuid.NewV1().String())
 
-		store.AddQuad(quad.Make(uuid, "id", id, nil))
-		store.AddQuad(quad.Make(uuid, "type", "pokemon", nil))
-		store.AddQuad(quad.Make(uuid, "name", s[1], nil))
-		store.AddQuad(quad.Make(uuid, "species_id", speciesId, nil))
-		store.AddQuad(quad.Make(uuid, "height", height, nil))
-		store.AddQuad(quad.Make(uuid, "base_experience", baseExperience, nil))
+		store.AddQuad(quad.Make(uuid, quad.IRI("rdf:id"), id, nil))
+		store.AddQuad(quad.Make(uuid, quad.IRI("rdf:type"), "pokemon", nil))
+		store.AddQuad(quad.Make(uuid, quad.IRI("schema:name"), s[1], nil))
+		store.AddQuad(quad.Make(uuid, quad.IRI("rdf:species_id"), speciesId, nil))
+		store.AddQuad(quad.Make(uuid, quad.IRI("rdf:height"), height, nil))
+		store.AddQuad(quad.Make(uuid, quad.IRI("rdf:base_experience"), baseExperience, nil))
 	}
 }
 
 func UpdatePikachu(store *cayley.Handle) {
 	// find uuid of pikacho
-	p := cayley.StartPath(store).Has("name", quad.String("pikacho"))
+	p := cayley.StartPath(store).Has(quad.IRI("schema:name"), quad.String("pikacho"))
 	vals, err := p.Iterate(nil).AllValues(nil)
 	if err != nil {
 		log.Fatalln(err)
@@ -83,8 +83,8 @@ func UpdatePikachu(store *cayley.Handle) {
 
 	// change pikacho to pikachu
 	t := cayley.NewTransaction()
-	t.RemoveQuad(quad.Make(uuid, "name", "pikacho", nil))
-	t.AddQuad(quad.Make(uuid, "name", "pikachu", nil))
+	t.RemoveQuad(quad.Make(uuid, quad.IRI("schema:name"), "pikacho", nil))
+	t.AddQuad(quad.Make(uuid, quad.IRI("schema:name"), "pikachu", nil))
 	err = store.ApplyTransaction(t)
 
 	if err != nil {
@@ -121,7 +121,7 @@ func LoadEvolutions(store *cayley.Handle, csvFile *string) {
 		}
 
 		// find uuid of source and target
-		p := cayley.StartPath(store).Has("id", quad.Int(sourcePokemon))
+		p := cayley.StartPath(store).Has(quad.IRI("rdf:id"), quad.Int(sourcePokemon))
 		vals, err := p.Iterate(nil).AllValues(nil)
 		if err != nil {
 			log.Fatalln(err)
@@ -130,7 +130,7 @@ func LoadEvolutions(store *cayley.Handle, csvFile *string) {
 		}
 		sourcePokemonUUID := vals[0].Native().(quad.IRI)
 
-		p = cayley.StartPath(store).Has("id", quad.Int(targetPokemon))
+		p = cayley.StartPath(store).Has(quad.IRI("rdf:id"), quad.Int(targetPokemon))
 		vals, err = p.Iterate(nil).AllValues(nil)
 		if err != nil {
 			log.Fatalln(err)
@@ -139,13 +139,13 @@ func LoadEvolutions(store *cayley.Handle, csvFile *string) {
 		}
 		targetPokemonUUID := vals[0].Native().(quad.IRI)
 
-		store.AddQuad(quad.Make(sourcePokemonUUID, "evolves_to", targetPokemonUUID, nil))
+		store.AddQuad(quad.Make(sourcePokemonUUID, quad.IRI("rdf:evolves_to"), targetPokemonUUID, nil))
 	}
 }
 
 func Print(store *cayley.Handle) {
 	// Now we create the path, to get to our data
-	p := cayley.StartPath(store).Has("type", quad.String("pokemon")).Out(quad.String("name"))
+	p := cayley.StartPath(store).Has(quad.IRI("rdf:type"), quad.String("pokemon")).Out(quad.IRI("schema:name"))
 
 	it, _ := p.BuildIterator().Optimize()
 	it, _ = store.OptimizeIterator(it)
@@ -166,7 +166,7 @@ func Print(store *cayley.Handle) {
 
 func PrintEvolutions(store *cayley.Handle) {
 	// Now we create the path, to get to our data
-	p := cayley.StartPath(store).Out(quad.String("evolves_to")).Out(quad.String("evolves_to")).Out(quad.String("name"))
+	p := cayley.StartPath(store).Out(quad.IRI("rdf:evolves_to")).Out(quad.IRI("rdf:evolves_to")).Out(quad.IRI("schema:name"))
 
 	it, _ := p.BuildIterator().Optimize()
 	it, _ = store.OptimizeIterator(it)
