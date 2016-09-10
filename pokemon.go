@@ -58,7 +58,9 @@ func LoadPokemons(store *cayley.Handle, csvFile *string) {
 			log.Fatal(err)
 		}
 
-		uuid := uuid.NewV1()
+		// IRI format: <https://my-domain.com/9f1dae45-6d98-11e6-871e-843a4b0f5a10>
+		uuid := quad.IRI("https://my-domain.com/" + uuid.NewV1().String())
+
 		store.AddQuad(quad.Make(uuid, "id", id, nil))
 		store.AddQuad(quad.Make(uuid, "type", "pokemon", nil))
 		store.AddQuad(quad.Make(uuid, "name", s[1], nil))
@@ -77,7 +79,7 @@ func UpdatePikachu(store *cayley.Handle) {
 	} else if len(vals) == 0 {
 		log.Fatalln("pikacho not found")
 	}
-	uuid := vals[0].Native().(string)
+	uuid := vals[0].Native().(quad.IRI)
 
 	// change pikacho to pikachu
 	t := cayley.NewTransaction()
@@ -126,7 +128,7 @@ func LoadEvolutions(store *cayley.Handle, csvFile *string) {
 		} else if len(vals) == 0 {
 			log.Fatalln("source pokemon not found")
 		}
-		sourcePokemonUUID := vals[0].Native().(string)
+		sourcePokemonUUID := vals[0].Native().(quad.IRI)
 
 		p = cayley.StartPath(store).Has("id", quad.Int(targetPokemon))
 		vals, err = p.Iterate(nil).AllValues(nil)
@@ -135,7 +137,7 @@ func LoadEvolutions(store *cayley.Handle, csvFile *string) {
 		} else if len(vals) == 0 {
 			log.Fatalln("target pokemon not found")
 		}
-		targetPokemonUUID := vals[0].Native().(string)
+		targetPokemonUUID := vals[0].Native().(quad.IRI)
 
 		store.AddQuad(quad.Make(sourcePokemonUUID, "evolves_to", targetPokemonUUID, nil))
 	}
