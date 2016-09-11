@@ -34,6 +34,7 @@ The talk focuses on the realities of working with unfamiliar data and improving 
 - Intro to graph databases
 - RDF & Quads
 - Modeling Pokemon with Cayley
+- Query our data with Cayley
 
 ---
 
@@ -206,13 +207,15 @@ https://github.com/PokeAPI/pokeapi/tree/master/data/v2/csv
 
 **Step 5.** [Show evolution of Pokemon](https://github.com/oren/pokemon/blob/v4/pokemon.go#L121-L140)
 
-https://github.com/PokeAPI/pokeapi/blob/master/data/v2/csv/pokemon_species.csv
-
 ---
+
+https://github.com/PokeAPI/pokeapi/blob/master/data/v2/csv/pokemon_species.csv
 
 ![](pictures/evolution-csv.png)
 
 ---
+ 
+<------ Evolves to
 
 ![](pictures/evolution-csv2.png)
 
@@ -221,6 +224,9 @@ https://github.com/PokeAPI/pokeapi/blob/master/data/v2/csv/pokemon_species.csv
 ![](pictures/evolution.png)
 
 ---
+
+    1 evolves_to 2 .
+    2 evolves_to 3 .
 
 ![](pictures/evolution2.png)
 
@@ -254,7 +260,7 @@ After
     
 ---
 
-## Overview of some Cayley features
+## Query our data with Cayley
 
 1. Plugable Storage Engine
 2. Web console
