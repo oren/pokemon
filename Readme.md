@@ -226,7 +226,7 @@ https://github.com/PokeAPI/pokeapi/blob/master/data/v2/csv/pokemon_species.csv
 
 ---
 
-**Step 6.** Make our graph an RDF
+**Step 6.** [Make our graph an RDF](https://github.com/oren/pokemon/blob/v5/pokemon.go#L62-L69)
 
 Before
 
