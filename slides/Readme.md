@@ -12,6 +12,12 @@
 
 ---
 
+I love feedback!
+
+![](youtube.png)
+
+---
+
 # What is a graph?
 ![](graph.png)
 
@@ -30,6 +36,7 @@ It is a structured way of storing and accessing a graph.
 * Whiteboard friendly
 * Performance
 * Flexibility
+
 ---
 
 ![](flexibility1.jpg)
@@ -197,21 +204,22 @@ https://github.com/PokeAPI/pokeapi/blob/master/data/v2/csv/pokemon_species.csv
 ```
 cayley http --config=cayley.cfg
 ````
+http://localhost:64210
 
 ---
 
 Find what pichu evolves into after 2 phases of evolution
 
 ```
-  g.V("pichu").In("name").Out("evolves_to").Out("evolves_to").Out("name").All()
+g.V("pichu").In("<schema:name>").Out("<rdf:evolves_to>").Out("<rdf:evolves_to>").Out("<schema:name>").All()
   
-  {
+{
   "result": [
-    {
+  {
     "id": "raichu"
-    }
-  ]
   }
+  ]
+}
 ```
 
 ---
@@ -219,7 +227,8 @@ Find what pichu evolves into after 2 phases of evolution
 Find all pokemons that are the result of 2 phases of evolution
 
 ```
-  g.V().In("name").Out("evolves_to").Out("evolves_to").Out("name").All()
+g.V().In("<schema:name>").Out("<rdf:evolves_to>").Out("<rdf:evolves_to>").Out("<schema:name>").All()
+
 ```
 
 ---
@@ -229,22 +238,27 @@ Find all pokemons that are the result of 2 phases of evolution
 ---
 
 Find all the evolutions of eevee
+
 ```
-  g.V("eevee").In("name").Out("evolves_to").Out("name").All()
+g.V("eevee").In("<schema:name>").Out("<rdf:evolves_to>").Out("<schema:name>").All()
   
+{
+ "result": [
   {
-  "result": [
-    {
-    "id": "flareon"
-    },
-    {
-    "id": "jolteon"
-    },
-    {
-    "id": "vaporeon"
-    }
-  ]
-  }
+   "id": "leafeon"
+  },
+  {
+   "id": "sylveon"
+  },
+  {
+   "id": "vaporeon"
+  },
+  {
+   "id": "flareon"
+  },
+ ... more results ...
+ ]
+}
 ```
 
 ---
@@ -254,12 +268,13 @@ Find all the evolutions of eevee
 Find all the evolutions of eevee
 
 ```
-curl http://localhost:64210/api/v1/query/gremlin -d 'g.V("eevee").In("name").Out("evolves_to").Out("name").All()'
+curl http://localhost:64210/api/v1/query/gremlin -d 'g.V("eevee").In("<schema:name>").Out("<rdf:evolves_to>").Out("<schema:name>").All()'
 ```
 
 ---
 
 4. Repl
+
 ```
 cayley repl --config=cayley.cfg
 ```
