@@ -314,7 +314,7 @@ After
 
 ---
 
-1. Plugable Storage Engine 
+**1.** Plugable Storage Engine 
 
 ```
   cayley dump --db=bolt --dbpath=data/pokemon.boltdb   # dump the database into a quad file
@@ -328,7 +328,7 @@ After
 
 ---
 
-2. Cayley's Web console
+**2.** Cayley's Web console
 
 
     cayley http --config=cayley.cfg
@@ -337,6 +337,7 @@ After
 http://localhost:64210
 
 ---
+**2.** Cayley's Web console
 
 Example 1:
 Find what pichu evolves into after 2 phases of evolution
@@ -354,6 +355,7 @@ g.V("pichu").In("<schema:name>").Out("<rdf:evolves_to>").Out("<rdf:evolves_to>")
 ```
 
 ---
+**2.** Cayley's Web console
 
 Example 2:
 Find all pokemons that are the result of 2 phases of evolution
@@ -368,6 +370,7 @@ g.V().In("<schema:name>").Out("<rdf:evolves_to>").Out("<rdf:evolves_to>").Out("<
 ![](pictures/eevee.jpg)
 
 ---
+**2.** Cayley's Web console
 
 Example 3:
 Find all the evolutions of eevee
@@ -396,7 +399,7 @@ g.V("eevee").In("<schema:name>").Out("<rdf:evolves_to>").Out("<schema:name>").Al
 
 ---
 
-3. Cayley's HTTP API
+**3.** Cayley's HTTP API
 
 Find all the evolutions of eevee
 
@@ -406,7 +409,7 @@ curl http://localhost:64210/api/v1/query/gremlin -d 'g.V("eevee").In("<schema:na
 
 ---
 
-4. Cayley's Repl
+**4.** Cayley's Repl
 
 ```
 cayley repl --config=cayley.cfg
