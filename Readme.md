@@ -260,7 +260,7 @@ After
     
 ---
 
-## Query our data with Cayley
+## Part 4 - Query our data with Cayley
 
 1. Plugable Storage Engine
 2. Web console
