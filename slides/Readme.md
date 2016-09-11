@@ -20,28 +20,43 @@
 
 ---
 
-# What is a graph?
+# Agenda
+- Intro to graph databases
+- RDF & Quads
+- Modeling Pokemon with Cayley
+---
+
+# Intro to graph Database
+
+---
+
+## What is a graph?
+
 ![](graph.png)
 
 A set of vertices and edges (or node and relationships)
 
 ---
 
-# What is a graph *database*?
+## What is a graph *database*?
+
 ![](graph2.png)
+
 It is a structured way of storing and accessing a graph.
 
 ---
 
-# Why graph database?
-* Relationship
-* Whiteboard friendly
-* Performance
-* Flexibility
+## Why graph database?
+
+- Relationship
+- Whiteboard friendly
+- Performance
+- Flexibility
 
 ---
 
-# graph dbs VS relational dbs
+## graph dbs VS relational dbs
+
 ---
 
 ![](flexibility1.jpg)
@@ -73,7 +88,11 @@ It is a structured way of storing and accessing a graph.
 
 ---
 
-# What is an *RDF* graph database?
+---
+# RDF & Quads
+---
+
+## What is an *RDF* graph database?
 RDF is just how the data is stored.  It is a **"Resource Description Framework"**.
 
 ![](hello_my_name_is-RDF.jpg)
@@ -88,7 +107,7 @@ You can consider Cayley as being made up of two parts.  **Quads** (RDF Quads) re
 
 ---
 
-# Example
+## Example
 
 ![](graph.png)
 
@@ -104,7 +123,7 @@ Quad format:
 
 ---
 
-# Gotcha 1: Directionality
+## Gotcha 1: Directionality
 
 ```Bob -> Listens To -> Rock Music```
 
@@ -114,7 +133,7 @@ Rock Music never Listens To Bob ... because Rock Music is a bad friend.
 
 ---
 
-# Gotcha 2: Duplicate quads
+## Gotcha 2: Duplicate quads
 
 Duplicate quads make no sense, as they are already completely stored.  You can either ignore them or error on them depending on data expectations.
 
@@ -122,7 +141,7 @@ Duplicate quads make no sense, as they are already completely stored.  You can e
 
 ---
 
-# Queries
+## Queries
 
 A query is how we get data back from the database, Cayley support multiple query systems. The most common one is Gizmo which is a full JavaScript implementation.
 
@@ -133,14 +152,14 @@ would return **Rock Music**.
 
 ---
 
-# Breathe
+## Breathe
 
 You are doing great! 
 At this point, we know enough to be dangerous.
 
 ---
 
-# Back to Pokemon
+#  Modeling Pokemon with Cayley
 
 ---
 ## Our plan
@@ -194,8 +213,6 @@ https://github.com/PokeAPI/pokeapi/blob/master/data/v2/csv/pokemon_species.csv
 
 ---
 
----
-
 6. Make our graph an RDF
 
 Before
@@ -210,7 +227,7 @@ After
 
 6. Make our graph an RDF
 
-Code change
+(Code change)
 
 Before
 
@@ -224,16 +241,16 @@ After
     
 ---
 
-## Let's try the following:
+## Overview of some Cayley features
 
-1. Replace the Storage Engine (from BoltDB to PostgreSQL)
-2. Use Cayley's Web console
-3. Use Cayley's HTTP API
-4. Use Cayley's Repl
+1. Plugable Storage Engine
+2. Web console
+3. HTTP API
+4. Repl
 
 ---
 
-1. Replace the Storage Engine(from BoltDB to PostgreSQL)
+1. Plugable Storage Engine 
 
 ```
   cayley dump --db=bolt --dbpath=data/pokemon.boltdb   # dump the database into a quad file
@@ -241,13 +258,25 @@ After
   cayley load --config=cayley.cfg --quads=dbdump.nq    # load a quad file and using a configuration file
 ```
 
+Available engines:
+
+- BoltDB
+- PostgreSQL
+- MongoDB
+- LevelDB
+- In-memory
+- CockroachDB
+- Cassandra
+- Google Cloud SQL
+
 ---
 
-2. Web console
+2. Cayley's Web console
 
-```
-cayley http --config=cayley.cfg
-````
+
+    cayley http --config=cayley.cfg
+
+
 http://localhost:64210
 
 ---
@@ -307,7 +336,7 @@ g.V("eevee").In("<schema:name>").Out("<rdf:evolves_to>").Out("<schema:name>").Al
 
 ---
 
-3. HTTP API
+3. Cayley's HTTP API
 
 Find all the evolutions of eevee
 
@@ -317,7 +346,7 @@ curl http://localhost:64210/api/v1/query/gremlin -d 'g.V("eevee").In("<schema:na
 
 ---
 
-4. Repl
+4. Cayley's Repl
 
 ```
 cayley repl --config=cayley.cfg
@@ -325,7 +354,7 @@ cayley repl --config=cayley.cfg
 
 ---
 
-# Additional Reading
+## Additional Reading
 
 - Cayley Repository -  https://github.com/cayleygraph/cayley
 - Cayley Forum - https://cayley.io
