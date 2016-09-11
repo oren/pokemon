@@ -1,0 +1,26 @@
+digraph {
+  graph [
+   rankdir=LR
+  ];
+  node [
+    style = "", fontsize = "20", fontcolor="grey22", color = "grey22", penwidth="1.0"
+  ]
+  edge [
+    color="lightskyblue", fontcolor="grey22", penwidth="1.0", fontsize="20"
+  ]
+
+  robert [label="Robert Melton"]
+  "robert" -> "human"[label="type"]
+  "robert" -> "rmelton@gmail.com"[label="email"]
+  "robert" -> "@robertmeta"[label="twitter"]
+  "robert" -> "robertmelton.com"[label="website"]
+
+  oren [label="Oren Golan"]
+  "oren" -> "human"[label="type"]
+  "oren" -> "orengolan@gmail.com"[label="email"]
+  "oren" -> "@oreng"[label="twitter"]
+  "oren" -> "oren.github.io"[label="website"]
+}
+
+/* sudo apt-get install graphviz */
+/* dot -Tpng input.dot > about-us.png */

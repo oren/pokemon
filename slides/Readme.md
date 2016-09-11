@@ -8,17 +8,7 @@
 
 # About us
 
-##### Robert Melton
-
-- https://www.robertmelton.com
-- @robertmeta
-- rmelton@gmail.com
-
-##### Oren Golan
-
-- https://oren.github.io
-- @oreng
-- orengolan@gmail.com
+![](about-us.png)
 
 ---
 
@@ -133,8 +123,8 @@ would return **Rock Music**.
 
 # Breathe
 
-You are doing great!
-At this point, we know enough to be dangerous!
+You are doing great! 
+At this point, we know enough to be dangerous.
 
 ---
 
