@@ -205,15 +205,48 @@ https://github.com/PokeAPI/pokeapi/tree/master/data/v2/csv
 
 ---
 
-**Step 5.** [Show evolution of Pokemon](https://github.com/oren/pokemon/blob/v4/pokemon.go#L121-L140)
+**Step 2.** [Query and display all Pokemon](https://github.com/oren/pokemon/blob/v1/main.go#L68-L88)
+
+```
+p := cayley.StartPath(store).In(quad.String("name"))
+```
 
 ---
+
+**Step 3.** [Add uniqueness](https://github.com/oren/pokemon/blob/v3/main.go#L63-L69)
+
+```
+uuid := uuid.NewV1()
+```
+
+---
+
+**Step 4.** [Update a quad](https://github.com/oren/pokemon/blob/v3/main.go#L72-L90)
+
+```
+t := cayley.NewTransaction()
+t.RemoveQuad(quad.Make(uuid, "name", "pikacho", nil))
+t.AddQuad(quad.Make(uuid, "name", "pikachu", nil))
+err = store.ApplyTransaction(t)
+```
+
+---
+
+**Step 5.** [Show evolution of Pokemon](https://github.com/oren/pokemon/blob/v4/pokemon.go#L121-L140)
+
+![](pictures/pikachu.png)
+
+---
+
+**Step 5.** [Show evolution of Pokemon](https://github.com/oren/pokemon/blob/v4/pokemon.go#L121-L140)
 
 https://github.com/PokeAPI/pokeapi/blob/master/data/v2/csv/pokemon_species.csv
 
 ![](pictures/evolution-csv.png)
 
 ---
+
+ **Step 5.** [Show evolution of Pokemon](https://github.com/oren/pokemon/blob/v4/pokemon.go#L121-L140)
  
 <------ Evolves to
 
@@ -221,14 +254,26 @@ https://github.com/PokeAPI/pokeapi/blob/master/data/v2/csv/pokemon_species.csv
 
 ---
 
+**Step 5.** [Show evolution of Pokemon](https://github.com/oren/pokemon/blob/v4/pokemon.go#L121-L140)
+
 ![](pictures/evolution.png)
 
 ---
+
+**Step 5.** [Show evolution of Pokemon](https://github.com/oren/pokemon/blob/v4/pokemon.go#L121-L140)
 
     1 evolves_to 2 .
     2 evolves_to 3 .
 
 ![](pictures/evolution2.png)
+
+---
+
+**Step 5.** [Show evolution of Pokemon](https://github.com/oren/pokemon/blob/v4/pokemon.go#L121-L140)
+
+```
+store.AddQuad(quad.Make(sourcePokemonUUID, "evolves_to", targetPokemonUUID, nil))
+```
 
 ---
 
@@ -239,7 +284,7 @@ Before
     83599944-77cb-11e6-b812-843a4b0f5a10 type pokemon .
 
 After
-
+   
     <https://my-domain.com/83599944-77cb-11e6-b812-843a4b0f5a10> <rdf:type> "pokemon" .
 
 ---
