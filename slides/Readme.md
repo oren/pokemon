@@ -144,9 +144,11 @@ At this point, we know enough to be dangerous.
 
 1. Import Pokemon from CSV into Cayley
 
+https://github.com/PokeAPI/pokeapi/tree/master/data/v2/csv
+
 ![](csv.png)
 
-https://github.com/PokeAPI/pokeapi/tree/master/data/v2/csv
+![](step1.png)
 
 ---
 
