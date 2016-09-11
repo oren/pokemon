@@ -271,16 +271,9 @@ After
   cayley load --config=cayley.cfg --quads=dbdump.nq    # load a quad file and using a configuration file
 ```
 
-Available engines:
-
-- BoltDB
-- PostgreSQL
-- MongoDB
-- LevelDB
-- In-memory
-- CockroachDB
-- Cassandra
-- Google Cloud SQL
+**Official:** In-Memory, BoltDB, PostgreSQL, Cassandra (soon) 
+**Working:** LevelDB, MongoDB, GAE datastore, etcd, RethinkDB
+**Future:** MySQL, CockroachDB, Dgraph
 
 ---
 
