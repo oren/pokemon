@@ -198,6 +198,30 @@ https://github.com/PokeAPI/pokeapi/blob/master/data/v2/csv/pokemon_species.csv
 
 6. Make our graph an RDF
 
+Before
+
+    83599944-77cb-11e6-b812-843a4b0f5a10 type pokemon .
+
+After
+
+    <https://my-domain.com/83599944-77cb-11e6-b812-843a4b0f5a10> <rdf:type> "pokemon" .
+
+---
+
+6. Make our graph an RDF
+
+Code change
+
+Before
+
+	uuid := quad.IRI("https://my-domain.com/" + uuid.NewV1().String())
+	store.AddQuad(quad.Make(uuid, quad.IRI("rdf:type"), "pokemon", nil))
+
+After
+
+    uuid := uuid.NewV1()
+    store.AddQuad(quad.Make(uuid, "type", "pokemon", nil))
+    
 ---
 
 ## Let's try the following:
