@@ -37,7 +37,7 @@ The talk focuses on the realities of working with unfamiliar data and improving 
 
 ---
 
-# Intro to graph databases
+# Part 1 - Intro to graph databases
 
 ---
 
@@ -98,7 +98,7 @@ It is a structured way of storing and accessing a graph.
 
 ---
 
-# RDF & Quads
+# Part 2 - RDF & Quads
 
 ---
 
@@ -171,7 +171,7 @@ At this point, we know enough to be dangerous.
 
 ---
 
-#  Modeling Pokemon with Cayley
+#  Part 3 - Modeling Pokemon with Cayley
 
 ---
 
