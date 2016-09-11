@@ -2,13 +2,21 @@
 
 # Evolving Graphs and Pokemon
 
-![](cover.jpg)
+![](pictures/cover.jpg)
+
+<!--
+Data modeling is hard.  Often you are presented with the challenge of data modeling at the start of a project, when you are least able to make good decisions about how to model that data.  Using the Cayley[1] graph database can ease the upfront design and allow you a “schema-last” or “schema-later” approach.
+
+This talk follows our journey of trying to model and understand the Pokemon (generation 1) data and build a small web application and graph database around it.  The web application allows querying and visualization of stats, types, locations, breeding, evolutions, and various other attributes and is available at the Github link.
+
+The talk focuses on the realities of working with unfamiliar data and improving your model as you improve your understanding of the data.  Rather than focusing on the end result, it focus on all the steps and missteps it took to get there and what we learned along the way.
+-->
 
 ---
 
 # About us
 
-![](about-us.png)
+![](pictures/about-us.png)
 
 ---
 
@@ -16,23 +24,25 @@
 
 ---
 
-![](youtube.png)
+![](pictures/youtube.png)
 
 ---
 
 # Agenda
+
 - Intro to graph databases
 - RDF & Quads
 - Modeling Pokemon with Cayley
+
 ---
 
-# Intro to graph Database
+# Intro to graph databases
 
 ---
 
 ## What is a graph?
 
-![](graph.png)
+![](pictures/graph.png)
 
 A set of vertices and edges (or node and relationships)
 
@@ -40,7 +50,7 @@ A set of vertices and edges (or node and relationships)
 
 ## What is a graph *database*?
 
-![](graph2.png)
+![](pictures/graph2.png)
 
 It is a structured way of storing and accessing a graph.
 
@@ -59,43 +69,43 @@ It is a structured way of storing and accessing a graph.
 
 ---
 
-![](flexibility1.jpg)
+![](pictures/flexibility1.jpg)
 
 ---
 
-![](flexibility2.jpg)
+![](pictures/flexibility2.jpg)
 
 ---
 
-![](flexibility3.jpg)
+![](pictures/flexibility3.jpg)
 
 ---
 
-![](flexibility4.jpg)
+![](pictures/flexibility4.jpg)
 
 ---
 
-![](flexibility5.jpg)
+![](pictures/flexibility5.jpg)
 
 ---
 
-![](flexibility6.jpg)
+![](pictures/flexibility6.jpg)
 
 ---
 
-
-![](graph-dbs.png)
-
----
+![](pictures/graph-dbs.png)
 
 ---
+
 # RDF & Quads
+
 ---
 
 ## What is an *RDF* graph database?
+
 RDF is just how the data is stored.  It is a **"Resource Description Framework"**.
 
-![](hello_my_name_is-RDF.jpg)
+![](pictures/hello_my_name_is-RDF.jpg)
 
 ---
 
@@ -103,15 +113,15 @@ You can consider Cayley as being made up of two parts.  **Quads** (RDF Quads) re
 
 ---
 
-![](quad.png)
+![](pictures/quad.png)
 
 ---
 
 ## Example
 
-![](graph.png)
+![](pictures/graph.png)
 
-3 quads:
+Example of 3 quads:
 
     Bob     "Listens To"   "Rock Music"   . 
     Bob      Drives         BMW           . 
@@ -137,7 +147,7 @@ Rock Music never Listens To Bob ... because Rock Music is a bad friend.
 
 Duplicate quads make no sense, as they are already completely stored.  You can either ignore them or error on them depending on data expectations.
 
-![](dupe.png)
+![](pictures/dupe.png)
 
 ---
 
@@ -145,16 +155,17 @@ Duplicate quads make no sense, as they are already completely stored.  You can e
 
 A query is how we get data back from the database, Cayley support multiple query systems. The most common one is Gizmo which is a full JavaScript implementation.
 
-![](gizmo.jpg) 
+![](pictures/gizmo.jpg) 
 
-```g.V("Bob").Out("Listens To").All();```
+`g.V("Bob").Out("Listens To").All();` 
+
 would return **Rock Music**.
 
 ---
 
 ## Breathe
 
-You are doing great! 
+You are doing great!
 At this point, we know enough to be dangerous.
 
 ---
@@ -163,7 +174,7 @@ At this point, we know enough to be dangerous.
 
 ---
 
-## Our plan
+## Our plan:
 
 1. [Import Pokemon from CSV into Cayley](https://github.com/oren/pokemon/blob/v0/main.go)
 2. [Query and display all Pokemon](https://github.com/oren/pokemon/blob/v1/main.go#L68-L88)
@@ -178,7 +189,7 @@ Step 1. Import Pokemon from CSV into Cayley
 
 https://github.com/PokeAPI/pokeapi/tree/master/data/v2/csv
 
-![](csv.png)
+![](pictures/csv.png)
 
 ---
 
@@ -186,9 +197,9 @@ Step 1. Import Pokemon from CSV into Cayley
 
 https://github.com/PokeAPI/pokeapi/tree/master/data/v2/csv
 
-![](csv.png)
+![](pictures/csv.png)
 
-![](step1.png)
+![](pictures/step1.png)
 
 ---
 
@@ -198,19 +209,19 @@ https://github.com/PokeAPI/pokeapi/blob/master/data/v2/csv/pokemon_species.csv
 
 ---
 
-![](evolution-csv.png)
+![](pictures/evolution-csv.png)
 
 ---
 
-![](evolution-csv2.png)
+![](pictures/evolution-csv2.png)
 
 ---
 
-![](evolution.png)
+![](pictures/evolution.png)
 
 ---
 
-![](evolution2.png)
+![](pictures/evolution2.png)
 
 ---
 
@@ -307,7 +318,7 @@ g.V().In("<schema:name>").Out("<rdf:evolves_to>").Out("<rdf:evolves_to>").Out("<
 
 ---
 
-![](eevee.jpg)
+![](pictures/eevee.jpg)
 
 ---
 
