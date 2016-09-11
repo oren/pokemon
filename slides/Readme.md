@@ -162,14 +162,15 @@ At this point, we know enough to be dangerous.
 #  Modeling Pokemon with Cayley
 
 ---
+
 ## Our plan
 
-1. Import Pokemon from CSV into Cayley
-2. Query and display all Pokemon
-3. Add uniqueness
-4. Update a quad
-5. Show evolution of Pokemon
-6. Make our graph an RDF
+1. [Import Pokemon from CSV into Cayley](https://github.com/oren/pokemon/blob/v0/main.go)
+2. [Query and display all Pokemon](https://github.com/oren/pokemon/blob/v1/main.go#L68-L88)
+3. [Add uniqueness](https://github.com/oren/pokemon/blob/v3/main.go#L63)
+4. [Update a quad](https://github.com/oren/pokemon/blob/v3/main.go#L72-L90)
+5. [Show evolution of Pokemon](https://github.com/oren/pokemon/blob/v4/pokemon.go#L121-L140)
+6. [Make our graph an RDF](https://github.com/oren/pokemon/blob/v5/pokemon.go#L62-L69)
 
 ---
 
