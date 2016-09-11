@@ -6,15 +6,6 @@
 
 ---
 
-Data modeling is hard.  Often you are presented with the challenge of data modeling at the start of a project, when you are least able to make good decisions about how to model that data.  Using the [Cayley](https://github.com/cayleygraph/cayley) graph database can ease the upfront design and allow you a “schema-last” or “schema-later” approach.
-
-This talk follows our journey of trying to model and understand the Pokemon (generation 1) data and build a small web application and graph database around it.  The web application allows querying and visualization of stats, types, locations, breeding, evolutions, and various other attributes and is available at the Github link.
-
-The talk focuses on the realities of working with unfamiliar data and improving your model as you improve your understanding of the data.  Rather than focusing on the end result, it focus on all the steps and missteps it took to get there and what we learned along the way.
-
-
----
-
 # About us
 
 ![](pictures/about-us.png)
@@ -26,6 +17,14 @@ The talk focuses on the realities of working with unfamiliar data and improving 
 ---
 
 ![](pictures/youtube.png)
+
+---
+
+Data modeling is hard.  Often you are presented with the challenge of data modeling at the start of a project, when you are least able to make good decisions about how to model that data.  Using the [Cayley](https://github.com/cayleygraph/cayley) graph database can ease the upfront design and allow you a “schema-last” or “schema-later” approach.
+
+This talk follows our journey of trying to model and understand the Pokemon (generation 1) data and build a small web application and graph database around it.  The web application allows querying and visualization of stats, types, locations, breeding, evolutions, and various other attributes and is available at the Github link.
+
+The talk focuses on the realities of working with unfamiliar data and improving your model as you improve your understanding of the data.  Rather than focusing on the end result, it focus on all the steps and missteps it took to get there and what we learned along the way.
 
 ---
 
@@ -107,9 +106,13 @@ It is a structured way of storing and accessing a graph.
 
 RDF is just how the data is stored.  It is a **"Resource Description Framework"**.
 
-![](pictures/hello_my_name_is-RDF.jpg)
+Example: `<https://my-domain.com/83599944-77cb-11e6-b812-843a4b0f5a10> <rdf:type> "pokemon" .`
+
+Vocabularies: https://www.w3.org/2011/rdfa-context/rdfa-1.1
 
 ---
+
+## Cayley from a high level 
 
 You can consider Cayley as being made up of two parts.  **Quads** (RDF Quads) representing the data, and **Queries** representing how to get data back from those quads. 
 
@@ -119,7 +122,7 @@ You can consider Cayley as being made up of two parts.  **Quads** (RDF Quads) re
 
 ---
 
-## Example
+## Example for quads
 
 ![](pictures/graph.png)
 
@@ -135,33 +138,15 @@ Quad format:
 
 ---
 
-## Gotcha 1: Directionality
-
-```Bob -> Listens To -> Rock Music```
-
-but... 
-
-Rock Music never Listens To Bob ... because Rock Music is a bad friend. 
-
----
-
-## Gotcha 2: Duplicate quads
-
-Duplicate quads make no sense, as they are already completely stored.  You can either ignore them or error on them depending on data expectations.
-
-![](pictures/dupe.png)
-
----
-
 ## Queries
 
-A query is how we get data back from the database, Cayley support multiple query systems. The most common one is Gizmo which is a full JavaScript implementation.
+A query is how we get data back from the database, Cayley support multiple query systems. The most common one is **Gizmo** which is a full JavaScript implementation.
 
 ![](pictures/gizmo.jpg) 
 
 `g.V("Bob").Out("Listens To").All();` 
 
-would return **Rock Music**.
+would return "Rock Music".
 
 ---
 
