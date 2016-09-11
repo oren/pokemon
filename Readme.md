@@ -271,8 +271,8 @@ After
   cayley load --config=cayley.cfg --quads=dbdump.nq    # load a quad file and using a configuration file
 ```
 
-**Official:** In-Memory, BoltDB, PostgreSQL, Cassandra (soon) 
-**Working:** LevelDB, MongoDB, GAE datastore, etcd, RethinkDB
+**Official:** In-Memory, BoltDB, PostgreSQL, Cassandra (soon)   
+**Working:** LevelDB, MongoDB, GAE datastore, etcd, RethinkDB  
 **Future:** MySQL, CockroachDB, Dgraph
 
 ---
