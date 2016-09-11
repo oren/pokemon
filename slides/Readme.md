@@ -151,10 +151,31 @@ https://github.com/PokeAPI/pokeapi/tree/master/data/v2/csv
 ![](step1.png)
 
 ---
+5. Show evolution of Pokemon
+
+https://github.com/PokeAPI/pokeapi/blob/master/data/v2/csv/pokemon_species.csv
+
+---
+
+![](evolution-csv.png)
+
+---
+
+![](evolution-csv2.png)
+
+---
+
+![](evolution.png)
+
+---
+
+![](evolution2.png)
+
+---
 
 ## Let's try the following:
 
-1. Replace the Storage Engine
+1. Replace the Storage Engine (from BoltDB to PostgreSQL)
 2. Run Cayley as an application
 3. Use Cayley's Web interface, Repl, and HTTP API
 
@@ -162,7 +183,9 @@ https://github.com/PokeAPI/pokeapi/tree/master/data/v2/csv
 
 # Additional Reading
 
-- cayley.io
+- Cayley Repository -  https://github.com/cayleygraph/cayley
+- Cayley Forum - https://cayley.io
+- Chat - #cayley on Freenode
 
 ---
 

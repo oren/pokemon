@@ -1,0 +1,34 @@
+digraph {
+  graph [
+   rankdir=TB
+  ];
+  node [
+    style = "", fontsize = "20", fontcolor="grey22", color = "grey22", penwidth="1.0"
+  ]
+  edge [
+    color="lightskyblue", fontcolor="grey22", penwidth="1.0", fontsize="20"
+  ]
+
+  bulbasaur1 [label="1"]
+  "bulbasaur1" -> "bulbasaur"[label="name"]
+  "bulbasaur1" -> "1"[label="species_id"]
+  "bulbasaur1" -> "7"[label="height"]
+  "bulbasaur1" -> "64"[label="base_experience"]
+  "bulbasaur1" -> "ivysaur1"[label="evolves_to", color="red"]
+
+  ivysaur1 [label="2"]
+  "ivysaur1" -> "ivysaur"[label="name"]
+  "ivysaur1" -> "2"[label="species_id"]
+  "ivysaur1" -> "10"[label="height"]
+  "ivysaur1" -> "130"[label="base_experience"]
+  "ivysaur1" -> "venusaur1"[label="evolves_to", color="red"]
+
+  venusaur1 [label="3"]
+  "venusaur1" -> "venusaur"[label="name"]
+  "venusaur1" -> "3"[label="species_id"]
+  "venusaur1" -> "20"[label="height"]
+  "venusaur1" -> "1000"[label="base_experience"]
+}
+
+/* sudo apt-get install graphviz */
+/* dot -Tpng evolution2.dot > evolution2.png && f evolution2.png */
