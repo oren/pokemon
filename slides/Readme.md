@@ -131,7 +131,7 @@ At this point, we know enough to be dangerous.
 # Back to Pokemon
 
 ---
-## What are we going to do?
+## Our plan
 
 1. Import Pokemon from CSV into Cayley
 2. Query and display all Pokemon
@@ -161,8 +161,6 @@ https://github.com/PokeAPI/pokeapi/blob/master/data/v2/csv/pokemon_species.csv
 
 ---
 
-<------ Evolve to
-
 ![](evolution-csv2.png)
 
 ---
@@ -178,8 +176,93 @@ https://github.com/PokeAPI/pokeapi/blob/master/data/v2/csv/pokemon_species.csv
 ## Let's try the following:
 
 1. Replace the Storage Engine (from BoltDB to PostgreSQL)
-2. Run Cayley as an application
-3. Use Cayley's Web interface, Repl, and HTTP API
+2. Use Cayley's Web console
+3. Use Cayley's HTTP API
+4. Use Cayley's Repl
+
+---
+
+1. Replace the Storage Engine(from BoltDB to PostgreSQL)
+
+```
+  cayley dump --db=bolt --dbpath=data/pokemon.boltdb   # dump the database into a quad file
+  cayley init --config=cayley.cfg                      # assumes the database exist but no table
+  cayley load --config=cayley.cfg --quads=dbdump.nq    # load a quad file and using a configuration file
+```
+
+---
+
+2. Web console
+
+```
+cayley http --config=cayley.cfg
+````
+
+---
+
+Find what pichu evolves into after 2 phases of evolution
+
+```
+  g.V("pichu").In("name").Out("evolves_to").Out("evolves_to").Out("name").All()
+  
+  {
+  "result": [
+    {
+    "id": "raichu"
+    }
+  ]
+  }
+```
+
+---
+ 
+Find all pokemons that are the result of 2 phases of evolution
+
+```
+  g.V().In("name").Out("evolves_to").Out("evolves_to").Out("name").All()
+```
+
+---
+
+![](eevee.jpg)
+
+---
+
+Find all the evolutions of eevee
+```
+  g.V("eevee").In("name").Out("evolves_to").Out("name").All()
+  
+  {
+  "result": [
+    {
+    "id": "flareon"
+    },
+    {
+    "id": "jolteon"
+    },
+    {
+    "id": "vaporeon"
+    }
+  ]
+  }
+```
+
+---
+
+3. HTTP API
+
+Find all the evolutions of eevee
+
+```
+curl http://localhost:64210/api/v1/query/gremlin -d 'g.V("eevee").In("name").Out("evolves_to").Out("name").All()'
+```
+
+---
+
+4. Repl
+```
+cayley repl --config=cayley.cfg
+```
 
 ---
 
