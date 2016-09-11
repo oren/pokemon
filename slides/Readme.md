@@ -12,7 +12,9 @@
 
 ---
 
-I love feedback!
+# I love feedback!
+
+---
 
 ![](youtube.png)
 
@@ -149,7 +151,15 @@ At this point, we know enough to be dangerous.
 
 ---
 
-1. Import Pokemon from CSV into Cayley
+Step 1. Import Pokemon from CSV into Cayley
+
+https://github.com/PokeAPI/pokeapi/tree/master/data/v2/csv
+
+![](csv.png)
+
+---
+
+Step 1. Import Pokemon from CSV into Cayley
 
 https://github.com/PokeAPI/pokeapi/tree/master/data/v2/csv
 
@@ -158,7 +168,8 @@ https://github.com/PokeAPI/pokeapi/tree/master/data/v2/csv
 ![](step1.png)
 
 ---
-5. Show evolution of Pokemon
+
+Step 5. Show evolution of Pokemon
 
 https://github.com/PokeAPI/pokeapi/blob/master/data/v2/csv/pokemon_species.csv
 
@@ -177,6 +188,12 @@ https://github.com/PokeAPI/pokeapi/blob/master/data/v2/csv/pokemon_species.csv
 ---
 
 ![](evolution2.png)
+
+---
+
+---
+
+6. Make our graph an RDF
 
 ---
 
