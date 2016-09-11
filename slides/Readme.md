@@ -167,7 +167,7 @@ At this point, we know enough to be dangerous.
 
 1. [Import Pokemon from CSV into Cayley](https://github.com/oren/pokemon/blob/v0/main.go)
 2. [Query and display all Pokemon](https://github.com/oren/pokemon/blob/v1/main.go#L68-L88)
-3. [Add uniqueness](https://github.com/oren/pokemon/blob/v3/main.go#L63)
+3. [Add uniqueness](https://github.com/oren/pokemon/blob/v3/main.go#L63-L69)
 4. [Update a quad](https://github.com/oren/pokemon/blob/v3/main.go#L72-L90)
 5. [Show evolution of Pokemon](https://github.com/oren/pokemon/blob/v4/pokemon.go#L121-L140)
 6. [Make our graph an RDF](https://github.com/oren/pokemon/blob/v5/pokemon.go#L62-L69)
