@@ -82,16 +82,7 @@ You can consider Cayley as being made up of two parts.  **Quads** (RDF Quads) re
 
 ---
 
-# Quads?
-
-A quad is a very simple data description. 
-
-**Subject | Predicate | Object | Label**
-
-- **Subject**: the acting entity
-- **Predicate**: verb stating somthing about the subject
-- **Object**: acted apon by the subject according to the predicate
-- **Label**: generally this is used to track data sources (often unused)
+![](quad.png)
 
 ---
 
@@ -121,7 +112,7 @@ Rock Music never Listens To Bob ... because Rock Music is a bad friend.
 
 ---
 
-# Gotcha #2: Duplicate quads
+# Gotcha 2: Duplicate quads
 
 Duplicate quads make no sense, as they are already completely stored.  You can either ignore them or error on them depending on data expectations.
 
@@ -131,14 +122,10 @@ Duplicate quads make no sense, as they are already completely stored.  You can e
 
 # Queries
 
-A query is how we get data back from the database, Cayley support multiple query systems, but in this talk we will focus on Gizmo.
+A query is how we get data back from the database, Cayley support multiple query systems. The most common one is Gizmo which is a full JavaScript implementation.
 
----
-
-# Gizmo?
 ![](gizmo.jpg) 
 
-Gizmo is the most common query system used with Cayley, it is a full javascript implementation.  
 ```g.V("Bob").Out("Listens To").All();```
 would return **Rock Music**.
 
