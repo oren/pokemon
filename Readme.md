@@ -238,7 +238,7 @@ After
 
 ---
 
-**Step 6.** Make our graph an RDF
+**Step 6.** [Make our graph an RDF](https://github.com/oren/pokemon/blob/v5/pokemon.go#L62-L69)
 
 (Code change)
 
