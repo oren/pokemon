@@ -41,6 +41,9 @@ It is a structured way of storing and accessing a graph.
 
 ---
 
+# graph dbs VS relational dbs
+---
+
 ![](flexibility1.jpg)
 
 ---
