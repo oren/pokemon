@@ -186,7 +186,7 @@ At this point, we know enough to be dangerous.
 
 ---
 
-Step 1. Import Pokemon from CSV into Cayley
+**Step 1.** [Import Pokemon from CSV into Cayley](https://github.com/oren/pokemon/blob/v0/main.go)
 
 https://github.com/PokeAPI/pokeapi/tree/master/data/v2/csv
 
@@ -194,7 +194,7 @@ https://github.com/PokeAPI/pokeapi/tree/master/data/v2/csv
 
 ---
 
-Step 1. Import Pokemon from CSV into Cayley
+**Step 1.** Import Pokemon from CSV into Cayley
 
 https://github.com/PokeAPI/pokeapi/tree/master/data/v2/csv
 
@@ -204,7 +204,7 @@ https://github.com/PokeAPI/pokeapi/tree/master/data/v2/csv
 
 ---
 
-Step 5. Show evolution of Pokemon
+**Step 5.** [Show evolution of Pokemon](https://github.com/oren/pokemon/blob/v4/pokemon.go#L121-L140)
 
 https://github.com/PokeAPI/pokeapi/blob/master/data/v2/csv/pokemon_species.csv
 
@@ -226,7 +226,7 @@ https://github.com/PokeAPI/pokeapi/blob/master/data/v2/csv/pokemon_species.csv
 
 ---
 
-6. Make our graph an RDF
+**Step 6.** Make our graph an RDF
 
 Before
 
@@ -238,7 +238,7 @@ After
 
 ---
 
-6. Make our graph an RDF
+**Step 6.** Make our graph an RDF
 
 (Code change)
 
@@ -294,6 +294,7 @@ http://localhost:64210
 
 ---
 
+Example 1:
 Find what pichu evolves into after 2 phases of evolution
 
 ```
@@ -309,7 +310,8 @@ g.V("pichu").In("<schema:name>").Out("<rdf:evolves_to>").Out("<rdf:evolves_to>")
 ```
 
 ---
- 
+
+Example 2:
 Find all pokemons that are the result of 2 phases of evolution
 
 ```
@@ -323,6 +325,7 @@ g.V().In("<schema:name>").Out("<rdf:evolves_to>").Out("<rdf:evolves_to>").Out("<
 
 ---
 
+Example 3:
 Find all the evolutions of eevee
 
 ```
