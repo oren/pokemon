@@ -6,5 +6,5 @@ sudo su - postgres
 psql
 createuser josh -s
 \password josh (enter password: password123)
-create database testdb;
+DROP DATABASE testdb; CREATE DATABASE testdb;
 ```
