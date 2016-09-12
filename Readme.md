@@ -256,21 +256,19 @@ https://github.com/PokeAPI/pokeapi/blob/master/data/v2/csv/pokemon_species.csv
 
 **Step 5.** [Show evolution of Pokemon](https://github.com/oren/pokemon/blob/v4/pokemon.go#L121-L140)
 
-```
-store.AddQuad(quad.Make(sourcePokemonUUID, "evolves_to", targetPokemonUUID, nil))
-```
-
+`store.AddQuad(quad.Make(sourcePokemonUUID, "evolves_to", targetPokemonUUID, nil))`
+    
 ---
 
 **Step 6.** [Make our graph an RDF](https://github.com/oren/pokemon/blob/v5/pokemon.go#L62-L69)
 
-Before
+Before:
 
-    83599944-77cb-11e6-b812-843a4b0f5a10 type pokemon .
+`83599944-77cb-11e6-b812-843a4b0f5a10 type pokemon .`
 
-After
+After:
    
-    <https://my-domain.com/83599944-77cb-11e6-b812-843a4b0f5a10> <rdf:type> "pokemon" .
+`<https://my-domain.com/83599944-77cb-11e6-b812-843a4b0f5a10> <rdf:type> "pokemon" .`
 
 ---
 
@@ -278,15 +276,16 @@ After
 
 (Code change)
 
-Before
-
-	uuid := quad.IRI("https://my-domain.com/" + uuid.NewV1().String())
-	store.AddQuad(quad.Make(uuid, quad.IRI("rdf:type"), "pokemon", nil))
-
-After
+Before:
 
     uuid := uuid.NewV1()
     store.AddQuad(quad.Make(uuid, "type", "pokemon", nil))
+    
+After:
+
+`uuid := quad.IRI("https://my-domain.com/" + uuid.NewV1().String())`
+
+`store.AddQuad(quad.Make(uuid, quad.IRI("rdf:type"), "pokemon", nil))`
     
 ---
 
@@ -324,12 +323,12 @@ http://localhost:64210
 ---
 **2.** Cayley's Web console
 
-Example 1:
-Find what pichu evolves into after 2 phases of evolution
+Example 1: Find what pichu evolves into after 2 phases of evolution
+
+
+`g.V("pichu").In("<schema:name>").Out("<rdf:evolves_to>").Out("<rdf:evolves_to>").Out("<schema:name>").All()`
 
 ```
-g.V("pichu").In("<schema:name>").Out("<rdf:evolves_to>").Out("<rdf:evolves_to>").Out("<schema:name>").All()
-  
 {
   "result": [
   {
@@ -342,13 +341,11 @@ g.V("pichu").In("<schema:name>").Out("<rdf:evolves_to>").Out("<rdf:evolves_to>")
 ---
 **2.** Cayley's Web console
 
-Example 2:
-Find all pokemons that are the result of 2 phases of evolution
+Example 2: Find all pokemons that are the result of 2 phases of evolution
 
-```
-g.V().In("<schema:name>").Out("<rdf:evolves_to>").Out("<rdf:evolves_to>").Out("<schema:name>").All()
 
-```
+`g.V().In("<schema:name>").Out("<rdf:evolves_to>").Out("<rdf:evolves_to>").Out("<schema:name>").All()`
+
 
 ---
 
@@ -357,12 +354,11 @@ g.V().In("<schema:name>").Out("<rdf:evolves_to>").Out("<rdf:evolves_to>").Out("<
 ---
 **2.** Cayley's Web console
 
-Example 3:
-Find all the evolutions of eevee
+Example 3: Find all the evolutions of eevee
 
-```
-g.V("eevee").In("<schema:name>").Out("<rdf:evolves_to>").Out("<schema:name>").All()
-  
+`g.V("eevee").In("<schema:name>").Out("<rdf:evolves_to>").Out("<schema:name>").All()`
+
+```  
 {
  "result": [
   {
@@ -388,9 +384,8 @@ g.V("eevee").In("<schema:name>").Out("<rdf:evolves_to>").Out("<schema:name>").Al
 
 Find all the evolutions of eevee
 
-```
-curl http://localhost:64210/api/v1/query/gremlin -d 'g.V("eevee").In("<schema:name>").Out("<rdf:evolves_to>").Out("<schema:name>").All()'
-```
+
+`curl http://localhost:64210/api/v1/query/gremlin -d 'g.V("eevee").In("<schema:name>").Out("<rdf:evolves_to>").Out("<schema:name>").All()'`
 
 ---
 
