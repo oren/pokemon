@@ -22,7 +22,7 @@
 
 Data modeling is hard.  Often you are presented with the challenge of data modeling at the start of a project, when you are least able to make good decisions about how to model that data.  Using the [Cayley](https://github.com/cayleygraph/cayley) graph database can ease the upfront design and allow you a “schema-last” or “schema-later” approach.
 
-This talk follows our journey of trying to model and understand the Pokemon (generation 1) data and build a small web application and graph database around it.  The web application allows querying and visualization of stats, types, locations, breeding, evolutions, and various other attributes and is available at the Github link.
+This talk follows our journey of trying to model and understand the Pokemon (generation 1) data and build a small web application and graph database around it.  The web application allows querying and visualization of stats, types, locations, breeding, evolutions, and various other attributes.
 
 The talk focuses on the realities of working with unfamiliar data and improving your model as you improve your understanding of the data.  Rather than focusing on the end result, it focus on all the steps and missteps it took to get there and what we learned along the way.
 
