@@ -74,27 +74,27 @@ It is a structured way of storing and accessing a graph.
 
 ---
 
-![](pictures/flexibility1.jpg)
+![](pictures/flex1.jpg)
 
 ---
 
-![](pictures/flexibility2.jpg)
+![](pictures/flex2.png)
 
 ---
 
-![](pictures/flexibility3.jpg)
+![](pictures/flex3.png)
 
 ---
 
-![](pictures/flexibility4.jpg)
+![](pictures/flex4.png)
 
 ---
 
-![](pictures/flexibility5.jpg)
+![](pictures/flex5.png)
 
 ---
 
-![](pictures/flexibility6.jpg)
+![](pictures/flex6.png)
 
 ---
 
