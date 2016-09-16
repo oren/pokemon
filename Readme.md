@@ -154,7 +154,9 @@ would return "Rock Music".
 
 ---
 
-## Breathe
+## Breath
+
+![](pictures/breathe.jpg)
 
 You are doing great!
 At this point, we know enough to be dangerous.
