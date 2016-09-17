@@ -35,7 +35,7 @@ The talk focuses on the realities of working with unfamiliar data and improving 
 # Agenda
 
 - Intro to graph databases
-- RDF & Quads
+- Cayley, Quads, and RDF
 - Modeling Pokemon with Cayley
 - Query our data with Cayley
 
@@ -102,17 +102,7 @@ It is a structured way of storing and accessing a graph.
 
 ---
 
-# Part 2 - RDF & Quads
-
----
-
-## What is an *RDF* graph database?
-
-RDF is just how the data is stored.  It is a **"Resource Description Framework"**.
-
-Example: `<https://my-domain.com/83599944-77cb-11e6-b812-843a4b0f5a10> <rdf:type> "pokemon" .`
-
-Vocabularies: https://www.w3.org/2011/rdfa-context/rdfa-1.1
+# Part 2 - Cayley, Quads, and RDF
 
 ---
 
@@ -151,6 +141,16 @@ A query is how we get data back from the database, Cayley support multiple query
 `g.V("Bob").Out("Listens To").All();` 
 
 would return "Rock Music".
+
+---
+
+## What is an *RDF* graph database?
+
+RDF is just how the data is stored.  It is a **"Resource Description Framework"**.
+
+Example: `<https://my-domain.com/83599944-77cb-11e6-b812-843a4b0f5a10> <rdf:type> "pokemon" .`
+
+Vocabularies: https://www.w3.org/2011/rdfa-context/rdfa-1.1
 
 ---
 
@@ -291,7 +291,7 @@ After:
 
 `uuid := quad.IRI("https://my-domain.com/" + uuid.NewV1().String())`
 
-`store.AddQuad(quad.Make(uuid, quad.IRI("rdf:type"), "pokemon", nil))`
+`store.AddQuad(quad.Make(uuid, quad.IRI("rdf:type"), quad.IRI("https://my-domain.com/pokemon"), nil))`
     
 ---
 
@@ -337,9 +337,9 @@ Example 1: Find what pichu evolves into after 2 phases of evolution
 ```
 {
   "result": [
-  {
-    "id": "raichu"
-  }
+    {
+      "id": "raichu"
+    }
   ]
 }
 ```
