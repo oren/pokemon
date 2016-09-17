@@ -62,7 +62,7 @@ func LoadPokemons(store *cayley.Handle, csvFile *string) {
 		uuid := quad.IRI("https://my-domain.com/" + uuid.NewV1().String())
 
 		store.AddQuad(quad.Make(uuid, quad.IRI("rdf:id"), id, nil))
-		store.AddQuad(quad.Make(uuid, quad.IRI("rdf:type"), "pokemon", nil))
+		store.AddQuad(quad.Make(uuid, quad.IRI("rdf:type"), quad.IRI("https://my-domain.com/pokemon"), nil))
 		store.AddQuad(quad.Make(uuid, quad.IRI("schema:name"), s[1], nil))
 		store.AddQuad(quad.Make(uuid, quad.IRI("rdf:species_id"), speciesId, nil))
 		store.AddQuad(quad.Make(uuid, quad.IRI("rdf:height"), height, nil))
@@ -144,8 +144,8 @@ func LoadEvolutions(store *cayley.Handle, csvFile *string) {
 }
 
 func Print(store *cayley.Handle) {
-	// Now we create the path, to get to our data
-	p := cayley.StartPath(store).Has(quad.IRI("rdf:type"), quad.String("pokemon")).Out(quad.IRI("schema:name"))
+	// Now we create the path, to get to our data: names of Pokemon
+	p := cayley.StartPath(store).Has(quad.IRI("rdf:type"), quad.IRI("https://my-domain.com/pokemon")).Out(quad.IRI("schema:name"))
 
 	it, _ := p.BuildIterator().Optimize()
 	it, _ = store.OptimizeIterator(it)
@@ -165,7 +165,7 @@ func Print(store *cayley.Handle) {
 }
 
 func PrintEvolutions(store *cayley.Handle) {
-	// Now we create the path, to get to our data
+	// Now we create the path, to get to our data: names of Pokemon that evolved twice
 	p := cayley.StartPath(store).Out(quad.IRI("rdf:evolves_to")).Out(quad.IRI("rdf:evolves_to")).Out(quad.IRI("schema:name"))
 
 	it, _ := p.BuildIterator().Optimize()

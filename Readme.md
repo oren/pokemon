@@ -274,7 +274,7 @@ Before:
 
 After:
    
-`<https://my-domain.com/83599944-77cb-11e6-b812-843a4b0f5a10> <rdf:type> "pokemon" .`
+`<https://my-domain.com/83599944-77cb-11e6-b812-843a4b0f5a10> <rdf:type> "<https://my-domain.com/pokemon>" .`
 
 ---
 
