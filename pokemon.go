@@ -11,8 +11,22 @@ import (
 	"github.com/cayleygraph/cayley"
 	"github.com/cayleygraph/cayley/graph"
 	"github.com/cayleygraph/cayley/quad"
-	uuid "github.com/satori/go.uuid"
+	"github.com/cayleygraph/cayley/schema"
 )
+
+type quadWriter struct {
+	w graph.QuadWriter
+}
+
+func (w quadWriter) WriteQuad(q quad.Quad) error {
+	return w.w.AddQuad(q)
+}
+
+type Pokemon struct {
+	ID   int    `json:"id"`
+	Type string `json:"ex:type"`
+	Name string `json:"ex:name"`
+}
 
 func Setup(dbFile *string) *cayley.Handle {
 	// Initialize the database
@@ -28,6 +42,8 @@ func Setup(dbFile *string) *cayley.Handle {
 }
 
 func LoadPokemons(store *cayley.Handle, csvFile *string) {
+	qw := quadWriter{store.QuadWriter}
+
 	file, err := os.Open(*csvFile)
 	if err != nil {
 		log.Fatal(err)
@@ -59,14 +75,29 @@ func LoadPokemons(store *cayley.Handle, csvFile *string) {
 		}
 
 		// IRI format: <https://my-domain.com/9f1dae45-6d98-11e6-871e-843a4b0f5a10>
-		uuid := quad.IRI("https://my-domain.com/" + uuid.NewV1().String())
+		// uuid := quad.IRI("https://my-domain.com/" + uuid.NewV1().String())
 
-		store.AddQuad(quad.Make(uuid, quad.IRI("rdf:id"), id, nil))
-		store.AddQuad(quad.Make(uuid, quad.IRI("rdf:type"), quad.IRI("https://my-domain.com/pokemon"), nil))
-		store.AddQuad(quad.Make(uuid, quad.IRI("schema:name"), s[1], nil))
-		store.AddQuad(quad.Make(uuid, quad.IRI("rdf:species_id"), speciesId, nil))
-		store.AddQuad(quad.Make(uuid, quad.IRI("rdf:height"), height, nil))
-		store.AddQuad(quad.Make(uuid, quad.IRI("rdf:base_experience"), baseExperience, nil))
+		// store.AddQuad(quad.Make(uuid, quad.IRI("rdf:id"), id, nil))
+		// store.AddQuad(quad.Make(uuid, quad.IRI("rdf:type"), quad.IRI("https://my-domain.com/pokemon"), nil))
+		// store.AddQuad(quad.Make(uuid, quad.IRI("schema:name"), s[1], nil))
+		// store.AddQuad(quad.Make(uuid, quad.IRI("rdf:species_id"), speciesId, nil))
+		// store.AddQuad(quad.Make(uuid, quad.IRI("rdf:height"), height, nil))
+		// store.AddQuad(quad.Make(uuid, quad.IRI("rdf:base_experience"), baseExperience, nil))
+
+		p := Pokemon{
+			ID:   id,
+			Type: "pokemon",
+			Name: s[1],
+		}
+
+		fmt.Printf("saving: %+v\n", p)
+
+		id2, err := schema.WriteAsQuads(qw, p)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		fmt.Println("id for object:", id2, "=", p.ID) // should be equal
 	}
 }
 

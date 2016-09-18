@@ -14,9 +14,9 @@ func main() {
 
 	store := Setup(dbFile)
 	LoadPokemons(store, csvFile)
-	UpdatePikachu(store)
-	LoadEvolutions(store, evolutionsFile)
+	// UpdatePikachu(store)
+	// LoadEvolutions(store, evolutionsFile)
 
-	// Print(store)
-	PrintEvolutions(store)
+	Print(store)
+	// PrintEvolutions(store)
 }
