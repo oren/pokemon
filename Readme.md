@@ -186,7 +186,7 @@ https://github.com/PokeAPI/pokeapi/tree/master/data/v2/csv
 
 ---
 
-**Step 1.** Import Pokemon from CSV into Cayley
+**Step 1.** [Import Pokemon from CSV into Cayley](https://github.com/oren/pokemon/blob/v0/main.go)
 
 https://github.com/PokeAPI/pokeapi/tree/master/data/v2/csv
 
@@ -238,7 +238,7 @@ https://github.com/PokeAPI/pokeapi/blob/master/data/v2/csv/pokemon_species.csv
 ---
 
  **Step 5.** [Show evolution of Pokemon](https://github.com/oren/pokemon/blob/v4/pokemon.go#L121-L140)
- 
+
 <------ Evolves to
 
 ![](pictures/evolution-csv2.png)
