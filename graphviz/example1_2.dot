@@ -1,0 +1,36 @@
+digraph {
+  graph [
+   rankdir=TB
+  ];
+  node [
+    style = "", fontsize = "20", fontcolor="grey22", color = "grey22", penwidth="1.0"
+  ]
+  edge [
+    color="lightskyblue", fontcolor="grey22", penwidth="1.0", fontsize="20"
+  ]
+
+  name1 [label="pichu", color="red"]
+
+  pichu1 [label="1", color="red"]
+  "pichu1" -> name1[label="name", color="red"]
+  "pichu1" -> "172"[label="species_id"]
+  "pichu1" -> "3"[label="height"]
+  "pichu1" -> "41"[label="base_experience"]
+  "pichu1" -> "pikachu1"[label="evolves_to"]
+
+  pikachu1 [label="2"]
+  "pikachu1" -> "pikachu"[label="name"]
+  "pikachu1" -> "25"[label="species_id"]
+  "pikachu1" -> "4"[label="height"]
+  "pikachu1" -> "112"[label="base_experience"]
+  "pikachu1" -> "raichu1"[label="evolves_to"]
+
+  raichu1 [label="3"]
+  "raichu1" -> "raichu"[label="name"]
+  "raichu1" -> "26"[label="species_id"]
+  "raichu1" -> "8"[label="height"]
+  "raichu1" -> "218"[label="base_experience"]
+}
+
+/* sudo apt-get install graphviz */
+/* dot -Tpng example1_2.dot > example1_2.png && f example1_2.png */

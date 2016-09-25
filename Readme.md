@@ -180,7 +180,7 @@ At this point, we know enough to be dangerous.
 
 **Step 1.** [Import Pokemon from CSV into Cayley](https://github.com/oren/pokemon/blob/v0/main.go)
 
-https://github.com/PokeAPI/pokeapi/tree/master/data/v2/csv
+https://github.com/PokeAPI/pokeapi/blob/master/data/v2/csv/pokemon.csv
 
 ![](pictures/csv.png)
 
@@ -201,6 +201,27 @@ https://github.com/PokeAPI/pokeapi/tree/master/data/v2/csv
 ```
 p := cayley.StartPath(store).In(quad.String("name"))
 ```
+
+![](pictures/step1.png)
+
+---
+
+**Step 2.** [Query and display all Pokemon](https://github.com/oren/pokemon/blob/v1/main.go#L68-L88)
+
+```
+p := cayley.StartPath(store).In(quad.String("name"))
+```
+
+![](pictures/step1_1.png)
+
+---
+**Step 2.** [Query and display all Pokemon](https://github.com/oren/pokemon/blob/v1/main.go#L68-L88)
+
+```
+p := cayley.StartPath(store).In(quad.String("name"))
+```
+
+![](pictures/step1_2.png)
 
 ---
 
@@ -327,10 +348,10 @@ After:
 http://localhost:64210
 
 ---
+
 **2.** Cayley's Web console
 
 Example 1: Find what pichu evolves into after 2 phases of evolution
-
 
 `g.V("pichu").In("<schema:name>").Out("<rdf:evolves_to>").Out("<rdf:evolves_to>").Out("<schema:name>").All()`
 
@@ -347,11 +368,70 @@ Example 1: Find what pichu evolves into after 2 phases of evolution
 ---
 **2.** Cayley's Web console
 
+Example 1: Find what pichu evolves into after 2 phases of evolution
+
+`g.V("pichu").In("<schema:name>").Out("<rdf:evolves_to>").Out("<rdf:evolves_to>").Out("<schema:name>").All()`
+
+![](pictures/example1.png)
+
+---
+
+**2.** Cayley's Web console
+
+Example 1: Find what pichu evolves into after 2 phases of evolution
+
+`g.V("pichu").In("<schema:name>").Out("<rdf:evolves_to>").Out("<rdf:evolves_to>").Out("<schema:name>").All()`
+
+![](pictures/example1_1.png)
+
+---
+
+**2.** Cayley's Web console
+
+Example 1: Find what pichu evolves into after 2 phases of evolution
+
+`g.V("pichu").In("<schema:name>").Out("<rdf:evolves_to>").Out("<rdf:evolves_to>").Out("<schema:name>").All()`
+
+![](pictures/example1_2.png)
+
+---
+
+**2.** Cayley's Web console
+
+Example 1: Find what pichu evolves into after 2 phases of evolution
+
+`g.V("pichu").In("<schema:name>").Out("<rdf:evolves_to>").Out("<rdf:evolves_to>").Out("<schema:name>").All()`
+
+![](pictures/example1_3.png)
+
+---
+
+**2.** Cayley's Web console
+
+Example 1: Find what pichu evolves into after 2 phases of evolution
+
+`g.V("pichu").In("<schema:name>").Out("<rdf:evolves_to>").Out("<rdf:evolves_to>").Out("<schema:name>").All()`
+
+![](pictures/example1_4.png)
+
+---
+
+**2.** Cayley's Web console
+
+Example 1: Find what pichu evolves into after 2 phases of evolution
+
+`g.V("pichu").In("<schema:name>").Out("<rdf:evolves_to>").Out("<rdf:evolves_to>").Out("<schema:name>").All()`
+
+![](pictures/example1_5.png)
+
+---
+
+**2.** Cayley's Web console
+
 Example 2: Find all pokemons that are the result of 2 phases of evolution
 
 
 `g.V().In("<schema:name>").Out("<rdf:evolves_to>").Out("<rdf:evolves_to>").Out("<schema:name>").All()`
-
 
 ---
 
